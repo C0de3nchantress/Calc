@@ -34,6 +34,6 @@ function operate(array, operator) {
     } else if (operator == "/") {
         return array.reduce((total, currentNum) => divide((total, currentNum)));
     } else {
-        throw new Error("Invalid operator");
+        throw new Error("Invalid operator");    
     }
 }
