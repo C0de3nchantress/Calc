@@ -23,3 +23,17 @@ function multiply(array) {
 function divide(a, b) {
     return a / b;
 }
+
+function operate(array, operator) {
+    if (operator == "+") {
+        return sum(array);
+    } else if (operator == "X") {
+        return multiply(array);
+    } else if (operator == "-") {
+        return array.reduce((total, currentNum) => subtract(total, currentNum));
+    } else if (operator == "/") {
+        return array.reduce((total, currentNum) => divide((total, currentNum)));
+    } else {
+        throw new Error("Invalid operator");
+    }
+}
