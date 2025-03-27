@@ -32,7 +32,7 @@ function operate(array, operator) {
     } else if (operator == "-") {
         return array.reduce((total, currentNum) => subtract(total, currentNum));
     } else if (operator == "/") {
-        return array.reduce((total, currentNum) => divide((total, currentNum)));
+        return array.slice(1).reduce((total, currentNum) => divide(total, currentNum), array[0]);
     } else {
         throw new Error("Invalid operator");    
     }
