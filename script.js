@@ -32,8 +32,22 @@ function operate(array, operator) {
     } else if (operator == "-") {
         return array.reduce((total, currentNum) => subtract(total, currentNum));
     } else if (operator == "/") {
-        return array.slice(1).reduce((total, currentNum) => divide(total, currentNum), array[0]);
+        return array
+            .slice(1)
+            .reduce((total, currentNum) => divide(total, currentNum), array[0]);
     } else {
-        throw new Error("Invalid operator");    
+        throw new Error("Invalid operator");
     }
 }
+
+let display = [];
+
+const numberButtons = document.querySelectorAll(".operand");
+const calcDisplay = document.querySelector("#display")
+
+numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        display.push(parseInt(button.textContent));
+        calcDisplay.textContent =  display.join('')
+    });
+});
