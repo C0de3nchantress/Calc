@@ -44,6 +44,7 @@ let display = [];
 
 const numberButtons = document.querySelectorAll(".operand");
 const calcDisplay = document.querySelector("#display")
+const clearButton = document.querySelector(".clear")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -51,3 +52,8 @@ numberButtons.forEach((button) => {
         calcDisplay.textContent =  display.join('')
     });
 });
+
+clearButton.addEventListener("click", () => {
+    display = []
+    calcDisplay.textContent = display.join('')
+})
