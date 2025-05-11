@@ -22,7 +22,7 @@ function operate(first, second, operator) {
     } else if (operator == "-") {
         return subtract(first, second);
     } else if (operator == "/") {
-        return divide(first, second);
+        return divide(first, second)        
     } else {
         return second;
     }
@@ -61,7 +61,7 @@ operatorButtons.forEach((button) => {
             firstNumber = parseFloat(currentNumber);
         } else if (currentNumber !== "") {
             const secondNumber = parseFloat(currentNumber);
-            const result = calculate(firstNumber, secondNumber, operator);
+            const result = operate(firstNumber, secondNumber, operator);
             firstNumber = result;
             calcDisplay.textContent = result;
         }
@@ -74,6 +74,14 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener("click", () => {
     if (operator && currentNumber !== "") {
         const secondNumber = parseFloat(currentNumber);
+        if (secondNumber == 0 && operator == "/"){
+            calcDisplay.textContent = "NO U SILLY GOOSE"
+            currentNumber = "";
+            firstNumber = null;
+            operator = null;
+            waitingForSecondNumber = false;
+            return;
+        }
         const result = operate(firstNumber, secondNumber, operator);
         calcDisplay.textContent = result;
         firstNumber = result;
