@@ -190,5 +190,10 @@ backspaceButton.addEventListener("click", () => {
     if (currentNumber !== "") {
         currentNumber = currentNumber.slice(0, -1);
         calcDisplay.textContent = currentNumber || "0";
+    } else if (firstNumber !== null) {
+        firstNumber = parseFloat(firstNumber.toString().slice(0, -1)) || 0;
+        calcDisplay.textContent = firstNumber || "0";
+    } else {
+        calcDisplay.textContent = "0";
     }
 });
