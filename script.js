@@ -6,37 +6,25 @@ function subtract(a, b) {
     return a - b;
 }
 
-function sum(array) {
-    const sumOfNums = array.reduce((total, currentNum) => {
-        return total + currentNum;
-    });
-    return sumOfNums;
-}
-
-function multiply(array) {
-    const productOfNums = array.reduce((total, currentNum) => {
-        return total * currentNum;
-    });
-    return productOfNums;
+function multiply(a, b) {
+    return a * b;
 }
 
 function divide(a, b) {
     return a / b;
 }
 
-function operate(array, operator) {
+function operate(first, second, operator) {
     if (operator == "+") {
-        return sum(array);
+        return add(first, second);
     } else if (operator == "X") {
-        return multiply(array);
+        return multiply(first, second);
     } else if (operator == "-") {
-        return array.reduce((total, currentNum) => subtract(total, currentNum));
+        return subtract(first, second);
     } else if (operator == "/") {
-        return array
-            .slice(1)
-            .reduce((total, currentNum) => divide(total, currentNum), array[0]);
+        return divide(first, second);
     } else {
-        throw new Error("Invalid operator");
+        return second;
     }
 }
 
