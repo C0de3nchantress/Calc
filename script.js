@@ -47,7 +47,7 @@ numberButtons.forEach((button) => {
         } else {
             currentNumber += button.textContent;
         }
-        calcDisplay.textContent = display.join("");
+        calcDisplay.textContent = currentNumber;
     });
 });
 
