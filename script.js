@@ -42,18 +42,46 @@ function operate(array, operator) {
 
 let display = [];
 
+let currentNumber = '';
+let firstNumber = null;
+let operator = null
+let waitingForSecondNumber = false;
+
 const numberButtons = document.querySelectorAll(".operand");
-const calcDisplay = document.querySelector("#display")
-const clearButton = document.querySelector(".clear")
+const calcDisplay = document.querySelector("#display");
+const clearButton = document.querySelector(".clear");
+const operatorButtons = document.querySelectorAll(".operator");
+const equalsButton = document.querySelector(".equals")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        display.push(parseInt(button.textContent));
-        calcDisplay.textContent =  display.join('')
+        if (waitingForSecondNumber) {
+            currentNumber = button.textContent
+            waitingForSecondNumber = false
+        } else {
+            currentNumber += button.textContent
+        }
+        calcDisplay.textContent = display.join("");
     });
 });
 
-clearButton.addEventListener("click", () => {
-    display = []
-    calcDisplay.textContent = display.join('')
+operatorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (firstNumber == null) {
+            firstNumber = parseFloat(currentNumber)
+        } else if (currentNumber !== '') {
+            const secondNumber = parseFloat(currentNumber)
+            const result = calculate(firstNumber, secondNumber, operator)
+            firstNumber = result
+            calcDisplay.textContent = result;
+        } 
+        operator = button.textContent;
+        waitingForSecondNumber = true;
+        currentNumber = ''
+    })
 })
+
+clearButton.addEventListener("click", () => {
+    display = [];
+    calcDisplay.textContent = display.join("");
+});
