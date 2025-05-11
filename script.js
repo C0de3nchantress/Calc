@@ -82,36 +82,60 @@ document.addEventListener("keydown", function (event) {
     const key = event.key;
 
     if (numbers.includes(key)) {
+        const button = Array.from(numberButtons).find(
+            (btn) => btn.textContent === key
+        );
+        button.classList.add("active-button");
         numberInput(key);
     }
 
     if (operators.includes(key)) {
+        let operatorkey = key;
+        if (key === "*") operatorkey = "X";
+
+        const button = Array.from(operatorButtons).find(
+            (btn) => btn.textContent === operatorkey
+        );
+        button.classList.add("active-button");
         operatorInput(key);
     }
 
     if (key == "=" || key === "Enter") {
+        equalsButton.classList.add("active-button");
         equalsButton.click();
     }
 
     if (key == "Escape" || key === "c" || key === "C") {
+        clearButton.classList.add("active-button");
         clearButton.click();
     }
 
     if (key === "F9") {
+        changeSignButton.classList.add("active-button");
         changeSignButton.click();
     }
 
     if (key === "%") {
-        percentageButton.click()
+        percentageButton.classList.add("active-button");
+        percentageButton.click();
     }
 
     if (key === ".") {
-        decimalButton.click()
+        decimalButton.classList.add("active-button");
+        decimalButton.click();
     }
 
     if (key === "Backspace") {
-        backspaceButton.click()
+        backspaceButton.classList.add("active-button");
+        backspaceButton.click();
     }
+});
+
+document.addEventListener("keyup", function (event) {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.classList.remove("active-button");
+    });
 });
 
 numberButtons.forEach((button) => {
