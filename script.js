@@ -41,6 +41,7 @@ const equalsButton = document.querySelector(".equals");
 const changeSignButton = document.querySelector(".sign");
 const percentageButton = document.querySelector(".percentage");
 const decimalButton = document.querySelector(".decimal");
+const backspaceButton = document.querySelector(".backspace")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -119,5 +120,12 @@ decimalButton.addEventListener("click", () => {
             }
         }
         calcDisplay.textContent = currentNumber;
+    }
+});
+
+backspaceButton.addEventListener("click", () => {
+    if (currentNumber !== ""){
+        currentNumber = currentNumber.slice(0, -1);
+        calcDisplay.textContent = currentNumber || "0";
     }
 });
