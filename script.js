@@ -38,6 +38,7 @@ const calcDisplay = document.querySelector("#display");
 const clearButton = document.querySelector(".clear");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector(".equals");
+const changeSignButton = document.querySelector(".sign")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -83,5 +84,12 @@ clearButton.addEventListener("click", () => {
     firstNumber = null;
     operator = null;
     waitingForSecondNumber = false;
-    calcDisplay.textContent = "";
+    calcDisplay.textContent = 0;
 });
+
+changeSignButton.addEventListener("click", () => {
+    if (currentNumber !== "") {
+        currentNumber = (parseFloat(currentNumber) * -1).toString();
+        calcDisplay.textContent = currentNumber;
+    }
+})
