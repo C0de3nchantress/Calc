@@ -58,6 +58,14 @@ function operatorInput(key) {
         firstNumber = parseFloat(currentNumber);
     } else if (currentNumber !== "") {
         const secondNumber = parseFloat(currentNumber);
+        if (secondNumber == 0 && operator == "/") {
+            calcDisplay.textContent = "NO U SILLY GOOSE";
+            currentNumber = "";
+            firstNumber = null;
+            operator = null;
+            waitingForSecondNumber = false;
+            return;
+        }
         const result = operate(firstNumber, secondNumber, operator);
         firstNumber = result;
         calcDisplay.textContent = result;
