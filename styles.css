@@ -14,12 +14,23 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-content: center;
+    overflow: hidden;
     height: 100vh;
     flex-direction: column;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: black 5px solid;
+    width: 400px;
+}
+
 #display {
-    width: 30%;
+    width: 100%;
     height: 50px;
     text-align: right;
     font-size: 2rem;
@@ -34,7 +45,7 @@ html, body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    width: 30%;
+    width: 100%;
 }
 
 button {
