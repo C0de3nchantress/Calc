@@ -22,7 +22,7 @@ function operate(first, second, operator) {
     } else if (operator == "-") {
         return subtract(first, second);
     } else if (operator == "/") {
-        return divide(first, second)        
+        return divide(first, second);
     } else {
         return second;
     }
@@ -41,17 +41,34 @@ const equalsButton = document.querySelector(".equals");
 const changeSignButton = document.querySelector(".sign");
 const percentageButton = document.querySelector(".percentage");
 const decimalButton = document.querySelector(".decimal");
-const backspaceButton = document.querySelector(".backspace")
+const backspaceButton = document.querySelector(".backspace");
+
+function numberInput(key) {
+    if (waitingForSecondNumber) {
+        currentNumber = key;
+        waitingForSecondNumber = false;
+    } else {
+        currentNumber += key;
+    }
+    calcDisplay.textContent = currentNumber;
+}
+
+document.addEventListener("keydown", function (event) {
+    const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const operators = ["*", "/", "+", "-"];
+    const key = event.key;
+
+    if (numbers.includes(key)) {
+        numberInput(key)
+    }
+
+    if (operators.includes(key)) {
+    }
+});
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if (waitingForSecondNumber) {
-            currentNumber = button.textContent;
-            waitingForSecondNumber = false;
-        } else {
-            currentNumber += button.textContent;
-        }
-        calcDisplay.textContent = currentNumber;
+        numberInput(button.textContent)
     });
 });
 
@@ -74,8 +91,8 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener("click", () => {
     if (operator && currentNumber !== "") {
         const secondNumber = parseFloat(currentNumber);
-        if (secondNumber == 0 && operator == "/"){
-            calcDisplay.textContent = "NO U SILLY GOOSE"
+        if (secondNumber == 0 && operator == "/") {
+            calcDisplay.textContent = "NO U SILLY GOOSE";
             currentNumber = "";
             firstNumber = null;
             operator = null;
@@ -132,7 +149,7 @@ decimalButton.addEventListener("click", () => {
 });
 
 backspaceButton.addEventListener("click", () => {
-    if (currentNumber !== ""){
+    if (currentNumber !== "") {
         currentNumber = currentNumber.slice(0, -1);
         calcDisplay.textContent = currentNumber || "0";
     }
