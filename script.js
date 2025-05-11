@@ -11,7 +11,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    return Math.round((a / b) * 100000000) / 100000000;
 }
 
 function operate(first, second, operator) {
@@ -38,8 +38,9 @@ const calcDisplay = document.querySelector("#display");
 const clearButton = document.querySelector(".clear");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector(".equals");
-const changeSignButton = document.querySelector(".sign")
-const percentageButton = document.querySelector(".percentage")
+const changeSignButton = document.querySelector(".sign");
+const percentageButton = document.querySelector(".percentage");
+const decimalButton = document.querySelector(".decimal");
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -93,14 +94,30 @@ changeSignButton.addEventListener("click", () => {
         currentNumber = (parseFloat(currentNumber) * -1).toString();
         calcDisplay.textContent = currentNumber;
     }
-})
+});
 
 percentageButton.addEventListener("click", () => {
     if (currentNumber !== "") {
-        currentNumber = (parseFloat(currentNumber) / 100).toString()
+        currentNumber = (parseFloat(currentNumber) / 100).toString();
         calcDisplay.textContent = currentNumber;
     } else if (firstNumber != null) {
-        firstNumber /= 100
-        calcDisplay.textContent = firstNumber
+        firstNumber /= 100;
+        calcDisplay.textContent = firstNumber;
     }
-})
+});
+
+decimalButton.addEventListener("click", () => {
+    if (!currentNumber.includes(".")) {
+        if (waitingForSecondNumber) {
+            currentNumber = "0.";
+            waitingForSecondNumber = false;
+        } else {
+            if (currentNumber === "") {
+                currentNumber = "0.";
+            } else {
+                currentNumber += ".";
+            }
+        }
+        calcDisplay.textContent = currentNumber;
+    }
+});
