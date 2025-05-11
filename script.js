@@ -88,6 +88,30 @@ document.addEventListener("keydown", function (event) {
     if (operators.includes(key)) {
         operatorInput(key);
     }
+
+    if (key == "=" || key === "Enter") {
+        equalsButton.click();
+    }
+
+    if (key == "Escape" || key === "c" || key === "C") {
+        clearButton.click();
+    }
+
+    if (key === "F9") {
+        changeSignButton.click();
+    }
+
+    if (key === "%") {
+        percentageButton.click()
+    }
+
+    if (key === ".") {
+        decimalButton.click()
+    }
+
+    if (key === "Backspace") {
+        backspaceButton.click()
+    }
 });
 
 numberButtons.forEach((button) => {
