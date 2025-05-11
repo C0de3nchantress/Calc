@@ -28,8 +28,6 @@ function operate(first, second, operator) {
     }
 }
 
-let display = [];
-
 let currentNumber = "";
 let firstNumber = null;
 let operator = null;
@@ -81,6 +79,9 @@ equalsButton.addEventListener("click", () => {
 });
 
 clearButton.addEventListener("click", () => {
-    display = [];
-    calcDisplay.textContent = display.join("");
+    currentNumber = "";
+    firstNumber = null;
+    operator = null;
+    waitingForSecondNumber = false;
+    calcDisplay.textContent = "";
 });
