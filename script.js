@@ -53,38 +53,44 @@ function numberInput(key) {
     calcDisplay.textContent = currentNumber;
 }
 
+function operatorInput(key) {
+    if (firstNumber == null) {
+        firstNumber = parseFloat(currentNumber);
+    } else if (currentNumber !== "") {
+        const secondNumber = parseFloat(currentNumber);
+        const result = operate(firstNumber, secondNumber, operator);
+        firstNumber = result;
+        calcDisplay.textContent = result;
+    }
+    if (key == "*") key = "X";
+    operator = key;
+    waitingForSecondNumber = true;
+    currentNumber = "";
+}
+
 document.addEventListener("keydown", function (event) {
     const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     const operators = ["*", "/", "+", "-"];
     const key = event.key;
 
     if (numbers.includes(key)) {
-        numberInput(key)
+        numberInput(key);
     }
 
     if (operators.includes(key)) {
+        operatorInput(key);
     }
 });
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        numberInput(button.textContent)
+        numberInput(button.textContent);
     });
 });
 
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if (firstNumber == null) {
-            firstNumber = parseFloat(currentNumber);
-        } else if (currentNumber !== "") {
-            const secondNumber = parseFloat(currentNumber);
-            const result = operate(firstNumber, secondNumber, operator);
-            firstNumber = result;
-            calcDisplay.textContent = result;
-        }
-        operator = button.textContent;
-        waitingForSecondNumber = true;
-        currentNumber = "";
+        operatorInput(button.textContent);
     });
 });
 
