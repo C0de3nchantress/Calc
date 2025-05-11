@@ -39,6 +39,7 @@ const clearButton = document.querySelector(".clear");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector(".equals");
 const changeSignButton = document.querySelector(".sign")
+const percentageButton = document.querySelector(".percentage")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -91,5 +92,15 @@ changeSignButton.addEventListener("click", () => {
     if (currentNumber !== "") {
         currentNumber = (parseFloat(currentNumber) * -1).toString();
         calcDisplay.textContent = currentNumber;
+    }
+})
+
+percentageButton.addEventListener("click", () => {
+    if (currentNumber !== "") {
+        currentNumber = (parseFloat(currentNumber) / 100).toString()
+        calcDisplay.textContent = currentNumber;
+    } else if (firstNumber != null) {
+        firstNumber /= 100
+        calcDisplay.textContent = firstNumber
     }
 })
